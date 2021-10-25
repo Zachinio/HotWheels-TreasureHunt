@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import org.json.JSONArray
 import org.json.JSONObject
+import zachinio.treasurehunt.R
 import zachinio.treasurehunt.databinding.FragmentHomeBinding
 import kotlin.random.Random
 
@@ -53,21 +55,26 @@ class HomeFragment : Fragment() {
 
         binding.treasureHuntBt.setOnClickListener {
             var res = "you'r right!"
+            var color = ContextCompat.getColor(it.context, R.color.white)
             if (!car.getString("isTreasure").toBoolean()) {
                 res = "Failed! You bought a mainline!!!"
+                color = ContextCompat.getColor(it.context, R.color.red)
+
             }
-            Toast.makeText(activity, res, Toast.LENGTH_LONG).show()
+            binding.background.setBackgroundColor(color)
             Thread.sleep(300)
             onCarsReady(carsJsonString)
         }
 
         binding.mainBt.setOnClickListener {
             var res = "you'r right!"
+            var color = ContextCompat.getColor(it.context, R.color.white)
             if (car.getString("isTreasure").toBoolean()) {
+                color = ContextCompat.getColor(it.context, R.color.red)
                 res = "Failed! You missed a treasure hunt!!!"
             }
+            binding.background.setBackgroundColor(color)
 
-            Toast.makeText(activity, res, Toast.LENGTH_LONG).show()
             Thread.sleep(300)
             onCarsReady(carsJsonString)
         }
