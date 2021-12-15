@@ -4,7 +4,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-soup = BeautifulSoup(requests.get("https://hotwheels.fandom.com/wiki/List_of_2020_Hot_Wheels").content,
+soup = BeautifulSoup(requests.get("https://hotwheels.fandom.com/wiki/List_of_2019_Hot_Wheels").content,
                      "html.parser")
 
 tables = soup.find_all("table", class_=["sortable", "wikitable" "jquery-tablesorter"], recursive=True)
